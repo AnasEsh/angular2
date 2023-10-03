@@ -1,7 +1,24 @@
-<form action="">
-    <mat-form-field>
-        <mat-label>Enter your email</mat-label>
-        <input matInput placeholder="pat@example.com" required>
+<form [formGroup]="group">
+    <div class="px-3 py-2" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center">
+        <p class="h2">Welcome back</p>
+        <mat-form-field class="col-7" appearance="outline" hintLabel="Your Email Address">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email"/>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="group.controls['email'].invalid">Invalid email format</mat-error>
+          </mat-form-field>
+        <mat-form-field class="col-7" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="pswd">
+            <mat-icon matSuffix>password</mat-icon>
+            <mat-hint [align]="'end'">{{group.controls['pswd'].value.length}}/10</mat-hint>
+            <mat-error *ngIf="group.controls['pswd'].value.length<6">pass at least 6 chars</mat-error>
+        </mat-form-field>
+        <div class="gap-4 d-flex">
+            <button [disabled]="!group.valid" mat-raised-button color="primary">Login</button>
+            <button mat-flat-button color="warn" (click)="clearForm()">Clear</button>
+        </div>
+    <p>{{group.value | json}}</p>
+    </div>
 
-      </mat-form-field>
 </form>

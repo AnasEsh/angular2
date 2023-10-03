@@ -16,6 +16,9 @@ import { AboutComponent } from './about/about.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {ReactiveFormsModule} from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import {MatRippleModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +39,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatTabsModule, 
     MatCardModule,
     MatProgressBarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatRippleModule
   ],
   
   providers: [],
