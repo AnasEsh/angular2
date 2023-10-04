@@ -19,6 +19,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatRippleModule} from '@angular/material/core';
+import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,10 +44,11 @@ import {MatRippleModule} from '@angular/material/core';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatRippleModule
+    MatRippleModule,
+    HttpClientModule
   ],
   
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

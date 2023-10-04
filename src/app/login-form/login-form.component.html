@@ -15,7 +15,7 @@
             <mat-error *ngIf="group.controls['pswd'].value.length<6">pass at least 6 chars</mat-error>
         </mat-form-field>
         <div class="gap-4 d-flex">
-            <button [disabled]="!group.valid" mat-raised-button color="primary">Login</button>
+            <button [disabled]="!group.valid" mat-raised-button color="primary" (click)="submit()">Login</button>
             <button mat-flat-button color="warn" (click)="clearForm()">Clear</button>
         </div>
     <p>{{group.value | json}}</p>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Patterns } from '../assets/globals';
+import { Patterns } from 'src/assets/globals';
+import { UserService } from '../user.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +12,8 @@ import { Patterns } from '../assets/globals';
 })
 export class LoginFormComponent implements OnInit{
  group!:FormGroup;
-constructor(private builder:FormBuilder){
+ isLoading:boolean=false;
+constructor(private builder:FormBuilder, private uService:UserService){
 
 }
 clearForm(){
@@ -24,5 +28,17 @@ ngOnInit(): void {
     pswd:['', [Validators.required, Validators.minLength(6)]]
   })
   
+}
+
+submit(){
+  this.isLoading=true
+  this.uService.login(this.group.controls['email'].value,this.group.controls['pswd'].value)
+  .subscribe(
+    {
+      next:(e)=>{
+        console.log(`from the component ${JSON.stringify(e)}`)
+      }
+    }
+  )
 }
 }
