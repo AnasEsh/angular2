@@ -12,7 +12,8 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 })
 export class LoginFormComponent implements OnInit{
  group!:FormGroup;
- isLoading:boolean=false;
+  isLoading:boolean=false;
+  errorText=""
 constructor(private builder:FormBuilder, private uService:UserService){
 
 }
@@ -32,11 +33,18 @@ ngOnInit(): void {
 
 submit(){
   this.isLoading=true
+  this.errorText=''
   this.uService.login(this.group.controls['email'].value,this.group.controls['pswd'].value)
   .subscribe(
     {
-      next:(e)=>{
-        console.log(`from the component ${JSON.stringify(e)}`)
+      next:(res)=>{
+        console.log( "from the comp",res)
+        if(res.ok)
+        return
+        this.errorText=res.errorMessage||"Something went wrong, its not your fault"
+      },
+      complete:()=>{
+        this.isLoading=false
       }
     }
   )
