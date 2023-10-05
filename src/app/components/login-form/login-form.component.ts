@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Patterns } from 'src/assets/globals';
-import { UserService } from '../user.service';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { FormWLoading } from '../../utils/baseFormComponent';
+import { IntegratedValidator, globalValidators } from 'src/assets/globals';
+import { buildValidatorList } from '../../utils/validatorMethods';
+import { UserService } from 'src/app/user.service';
 
 
 @Component({
@@ -10,25 +13,19 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit{
- group!:FormGroup;
-  isLoading:boolean=false;
-  errorText=""
-constructor(private builder:FormBuilder, private uService:UserService){
-
-}
-clearForm(){
-  
-  for(let c of Object.keys(this.group.controls)){
-    this.group.get(c)?.reset()
-  }
+export class LoginFormComponent extends FormWLoading{
+  nameControl = new FormControl('')
+constructor(builder:FormBuilder, private uService:UserService){
+  super(builder)
 }
 ngOnInit(): void {
+
   this.group=this.builder.group({
-    email:['', [Validators.required, Validators.pattern(Patterns.email)]],
-    pswd:['', [Validators.required, Validators.minLength(6)]]
+    email:['', buildValidatorList('email')],
+    pswd:['', buildValidatorList('pswd')]
   })
-  
+
+ 
 }
 
 submit(){
@@ -38,7 +35,7 @@ submit(){
   .subscribe(
     {
       next:(res)=>{
-        console.log( "from the comp",res)
+   
         if(res.ok)
         return
         this.errorText=res.errorMessage||"Something went wrong, its not your fault"

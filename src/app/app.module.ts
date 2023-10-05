@@ -8,10 +8,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { RegFormComponent } from './reg-form/reg-form.component';
+
+import { RegFormComponent } from './components/reg-form/reg-form.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { UserTabsComponent } from './user-tabs/user-tabs.component';
+
 import { AboutComponent } from './about/about.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -21,6 +21,9 @@ import { MatInputModule } from '@angular/material/input';
 import {MatRippleModule} from '@angular/material/core';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ValidatedMatInputComponent } from './components/validated-mat-input/validated-mat-input.component';
+import { UserTabsComponent } from './components/user-tabs/user-tabs.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     LoginFormComponent,
     RegFormComponent,
     UserTabsComponent,
-    AboutComponent
+    AboutComponent,
+    ValidatedMatInputComponent
   ],
   imports: [ 
     AppRoutingModule,
