@@ -1,23 +1,11 @@
 <form [formGroup]="group">
     <div class="px-3 py-2" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center">
         <p class="h2">Welcome back</p>
-        <mat-form-field class="col-7" appearance="outline" hintLabel="Your Email Address">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="user@example.com" formControlName="email"/>
-            <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="group.controls['email'].invalid">{{validator("email").invalidMessage(group.controls['email'].value)}}</mat-error>
-          </mat-form-field>
-        <mat-form-field class="col-7" appearance="outline">
-            <mat-label>Password</mat-label>
-            <input type="password" matInput [formControl]="getAsFormControl('pswd')">
-            <mat-icon matSuffix>password</mat-icon>
-            <mat-hint [align]="'end'">{{group.controls['pswd'].value?.length||0}}/10</mat-hint>
-            <mat-error *ngIf="getAsFormControl('pswd').invalid">{{validator("pswd").invalidMessage(group.controls['pswd'].value)}}</mat-error>
-        
-        </mat-form-field>
-        <div class="gap-4 d-flex">
+        <app-validated-mat-input fieldName="email" [control]="getAsFormControl('email')" class="mb-3"></app-validated-mat-input>
+        <app-validated-mat-input type="password" fieldName="pswd" [control]="getAsFormControl('pswd')"></app-validated-mat-input>
+        <div class="gap-4 d-flex mt-4">
             <button [disabled]="!group.valid||isLoading" mat-raised-button color="primary" (click)="submit()">Login</button>
-            <button mat-flat-button color="warn" (click)="clearForm()">Clear</button>
+            <button mat-flat-button color="warn" (click)="clearForm()" *ngIf="clearable">Clear</button>
         </div>
         <mat-progress-bar class="w-25 my-3" mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
     <div class="alert-danger alert m-3" *ngIf="errorText">

@@ -14,7 +14,7 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent extends FormWLoading{
-  nameControl = new FormControl('')
+
 constructor(builder:FormBuilder, private uService:UserService){
   super(builder)
 }

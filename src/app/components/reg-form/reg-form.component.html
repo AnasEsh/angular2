@@ -1,7 +1,19 @@
-<form >
-    <mat-form-field>
-        <mat-label>Name</mat-label>
-        <mat-icon matIconPrefix>person</mat-icon>
-        <input matInput type="text" placeholder="Mohammed Fahad"/>
-    </mat-form-field>
+<form [formGroup]="group">
+    <div class="px-3 py-2" fxFlex fxLayout="column" fxLayoutAlign="space-evenly center">
+        <p class="h2">Get Started</p>
+        <app-validated-mat-input fieldName="name" [control]="getAsFormControl('name')" class="mb-3"></app-validated-mat-input>
+        <app-validated-mat-input fieldName="email" [control]="getAsFormControl('email')" class="mb-3"></app-validated-mat-input>
+        <app-validated-mat-input type="password" fieldName="pswd" [control]="getAsFormControl('pswd')" class="mb-3"></app-validated-mat-input>
+        <app-validated-mat-input type="password" fieldName="confPswd" [control]="getAsFormControl('confPswd')"></app-validated-mat-input>
+        
+        <div class="gap-4 d-flex mt-4">
+            <button [disabled]="!group.valid||isLoading" mat-raised-button color="primary" (click)="submit()">Login</button>
+            <button mat-flat-button color="warn" (click)="clearForm()" *ngIf="clearable">Clear</button>
+        </div>
+        <mat-progress-bar class="w-25 my-3" mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <div class="alert-danger alert m-3" *ngIf="errorText">
+        {{errorText}}
+    </div>
+    </div>
+
 </form>

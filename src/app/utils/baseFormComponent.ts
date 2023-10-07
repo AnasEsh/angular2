@@ -12,9 +12,14 @@ export abstract class FormWLoading implements OnInit{
     abstract ngOnInit(): void
 
     abstract submit():void;
-    clearForm():void{this.group.reset()}
+    clearForm():void{
+      this.group.reset()
+      this.group.markAsUntouched()}
     validator=getValidator
     getAsFormControl(name:string):FormControl{
         return this.group.controls[name] as FormControl
       }
+    get clearable(){
+      return this.group.dirty
+    }
 }
