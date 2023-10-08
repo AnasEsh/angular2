@@ -24,6 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ValidatedMatInputComponent } from './components/validated-mat-input/validated-mat-input.component';
 import { UserTabsComponent } from './components/user-tabs/user-tabs.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { CrudCenterModule } from './crud-center/crud-center.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     RegFormComponent,
     UserTabsComponent,
     AboutComponent,
-    ValidatedMatInputComponent
+    ValidatedMatInputComponent,
   ],
   imports: [ 
     AppRoutingModule,
@@ -49,9 +51,10 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     ReactiveFormsModule,
     MatInputModule,
     MatRippleModule,
-    HttpClientModule
+    HttpClientModule,
+    CrudCenterModule
   ],
-  
+
   providers: [UserService],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,16 @@
+ 
+ a.nav-link{
+    background: #0000000e;
+}
+
+.hard-corner{
+    border-radius: 0;
+}
+.temp{
+    background: radial-gradient(transparent, #ffffff59),linear-gradient(3deg, #8360c399, burlywood) !important;
+    background-color: rgb(255, 0, 0);
+}
+
+a.nav-link.text-white{
+    background: rgba(0, 0, 0, 0.525) !important;
+}
